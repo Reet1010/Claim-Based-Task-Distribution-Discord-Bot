@@ -4,6 +4,8 @@ A Discord bot for managing Reddit engagement tasks through a claim-based workflo
 
 The bot allows administrators to verify members, assign them to karma ranges, create Reddit engagement tasks, let eligible users claim tasks, submit completed work, and track completions through Google Sheets and MongoDB.
 
+---
+
 ## Features
 
 ### User Verification System
@@ -24,7 +26,9 @@ Users are categorized into:
 
 Range hierarchy:
 
+```text
 A < B < C
+```
 
 Eligibility:
 
@@ -34,11 +38,15 @@ Eligibility:
 | B          | B, C           |
 | C          | C              |
 
+---
+
 ### Claim-Based Task Distribution
 
 Admins create tasks using:
 
+```text
 /createtask
+```
 
 Task details include:
 
@@ -54,9 +62,11 @@ The task appears in the claim channel with a Claim button.
 
 The Reddit post URL remains hidden from public view.
 
+---
+
 ### Task Claiming
 
-When a member clicks **Claim Task** button in the general channel:
+When a member clicks **Claim Task**:
 
 The bot checks:
 
@@ -74,11 +84,15 @@ When all slots are filled:
 
 - The task message is automatically deleted
 
+---
+
 ### Task Submission
 
 Users submit completed work using:
 
+```text
 /submit
+```
 
 A modal collects:
 
@@ -89,11 +103,15 @@ A modal collects:
 
 The submission is forwarded to the admin review channel.
 
+---
+
 ### Manual Verification
 
 Admins verify submissions using:
 
+```text
 /markcompleted
+```
 
 The bot validates:
 
@@ -108,21 +126,31 @@ If valid:
 - Google Sheet is updated
 - Duplicate submissions are prevented
 
+---
+
 ### Google Sheets Integration
 
 Each admin automatically gets their own worksheet.
 
 Example:
 
+```text
 Croco
 Reet
+```
 
 Columns:
 
 | TaskID | Username | Post URL | Comment URL | Date | Time | Price | Status |
 | ------ | -------- | -------- | ----------- | ---- | ---- | ----- | ------ |
 
-Status is currently stored as: pending
+Status is currently stored as:
+
+```text
+pending
+```
+
+---
 
 ## Tech Stack
 
@@ -146,8 +174,11 @@ Status is currently stored as: pending
 - Render
 - Cron-job.org (keep-alive)
 
+---
+
 ## Project Structure
 
+```text
 commands/
 handlers/
 models/
@@ -156,68 +187,88 @@ services/
 index.js
 sheets.js
 deploy-commands.js
+```
 
 ### Commands
 
+```text
 /getverified
 /verified
 /createtask
 /submit
 /markcompleted
+```
 
 ### Services
 
+```text
 karmaService.js
 claimService.js
 submissionService.js
+```
+
+---
 
 ## Database Collections
 
 ### KarmaRange
 
+```js
 {
-rangeCode: "A",
-users: [
-{
-userId,
-name,
-redditLink,
-admin
+  rangeCode: "A",
+  users: [
+    {
+      userId,
+      name,
+      redditLink,
+      admin
+    }
+  ]
 }
-]
-}
+```
 
 ### ClaimTask
 
+```js
 {
-(taskId, adminName, price, postLink, range, slots, comments, claimedBy);
+  (taskId, adminName, price, postLink, range, slots, comments, claimedBy);
 }
+```
 
 ### CompletedSubmission
 
+```js
 {
-(taskId, adminId, adminName, userId, userName, postLink, commentLink, price);
+  (taskId, adminId, adminName, userId, userName, postLink, commentLink, price);
 }
+```
 
 ### Admin Collections
 
 Each admin receives a dedicated collection:
 
+```text
 croco
 reet
+```
 
 Example:
 
+```js
 {
-taskId: 101,
-price: "0.50$",
-postUrl,
-range,
-slots
+  taskId: 101,
+  price: "0.50$",
+  postUrl,
+  range,
+  slots
 }
+```
+
+---
 
 ## Environment Variables
 
+```env
 TOKEN=
 CLIENT_ID=
 
@@ -230,6 +281,9 @@ CLAIM_CHANNEL_ID=
 VERIFICATION_CHANNEL_ID=
 TASK_SUBMIT_CHANNEL_ID=
 TASK_RECORDS_CHANNEL_ID=
+```
+
+---
 
 ## Deployment
 
@@ -242,13 +296,17 @@ Hosted on Render using:
 
 Deployment pipeline:
 
+```text
 GitHub
-↓
+   ↓
 Render
-↓
+   ↓
 MongoDB Atlas
-↓
+   ↓
 Google Sheets
+```
+
+---
 
 ## Security Features
 
@@ -262,35 +320,41 @@ Google Sheets
 - MongoDB validation
 - Google Sheets logging
 
+---
+
 ## Current Workflow
 
+```text
 User
-↓
+ ↓
 /getverified
-↓
+ ↓
 Admin
-↓
+ ↓
 /verified
-↓
+ ↓
 User assigned to Range
-↓
+ ↓
 Admin creates task
-↓
+ ↓
 User claims task
-↓
+ ↓
 Task sent via DM
-↓
+ ↓
 User completes task
-↓
+ ↓
 /submit
-↓
+ ↓
 Admin reviews
-↓
+ ↓
 /markcompleted
-↓
+ ↓
 MongoDB Updated
-↓
+ ↓
 Google Sheet Updated
+```
+
+---
 
 ## License
 
