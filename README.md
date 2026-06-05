@@ -4,6 +4,12 @@ A Discord bot for managing Reddit engagement tasks through a claim-based workflo
 
 The bot allows administrators to verify members, assign them to karma ranges, create Reddit engagement tasks, let eligible users claim tasks, submit completed work, and track completions through Google Sheets and MongoDB.
 
+**Project Video Walkthrough**
+
+---
+
+<a href="[https://youtube.com](https://youtu.be/clRGS2iA2ws)" target="_blank" rel="noopener noreferrer">Watch the video</a>
+
 ---
 
 ## Features
