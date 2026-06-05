@@ -8,9 +8,7 @@ The bot allows administrators to verify members, assign them to karma ranges, cr
 
 ---
 
-<a href="[https://youtube.com](https://youtu.be/clRGS2iA2ws)" target="_blank" rel="noopener noreferrer">Watch the video</a>
-
----
+[Watch the video](<[https://youtu.be/clRGS2iA2ws](https://youtu.be/clRGS2iA2ws)>)
 
 ## Features
 
