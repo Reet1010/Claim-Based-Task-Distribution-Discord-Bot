@@ -8,7 +8,7 @@ The bot allows administrators to verify members, assign them to karma ranges, cr
 
 ---
 
-[Watch the video](<[https://youtu.be/clRGS2iA2ws](https://youtu.be/clRGS2iA2ws)>)
+[Watch the video](https://youtu.be/clRGS2iA2ws)
 
 ## Features
 
